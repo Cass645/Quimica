@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Página educativa de Química">
+    <meta name="keywords" content="química, educación, estados de la materia, teoría cinética, experimento">
+    <meta name="author" content="Elmer Casallas, Nasly Guzmán">
+    <title>¡Química Divertida! Explora y Experimenta</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Lobster&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- Swiper CSS para Carrusel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+
+    <!-- formulas -->
+    <head>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      </head>
+      
+    <!-- Estilos -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background-color: #f0f0f5;
+            color: #333;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        header {
+            background-color: rgb(42, 39, 42);
+            padding: 20px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header h1 {
+            font-family: 'Lobster', cursive;
+            font-size: 3rem;
+            color: aqua;
+        }
+
+        nav {
+            background-color: #0f3b6a;
+            overflow: hidden;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            padding: 10px 0;
+        }
+
+        nav a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        nav a:hover {
+            background-color:aqua;
+            color:palevioletred;
+        }
+
+        .portada {
+            background: url('image/prtada.jpg') no-repeat center center/cover;
+            height: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color:white;
+            text-align: center;
+            position: relative;
+            animation: fadeIn 2s ease;
+        }
+
+        .portada::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+
+        .portada h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .portada p {
+            font-size: 1.5rem;
+        }
+
+        .portada a {
+            margin-top: 20px;
+            padding: 12px 24px;
+            background-color: aqua;
+            color:black;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s;
+            animation: bounceIn 1.5s infinite alternate;
+        }
+
+        .portada a:hover {
+            background-color: aqua;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes bounceIn {
+            from { transform: translateY(0); }
+            to { transform: translateY(-10px); }
+        }
+
+        .seccion {
+            padding: 60px 20px;
+            background-color:aliceblue;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease;
+        }
+
+        .seccion h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #2d3e50;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .galeria {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Galería horizontal */
+        .galeria-horizontal {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 20px 0;
+        }
+
+        .galeria-horizontal img {
+            max-width: 250px;
+            height: 250px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .galeria-horizontal .galeria-item {
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .galeria-horizontal .galeria-item:hover {
+            transform: scale(1.05);
+        }
+
+        .swiper-container {
+            width: 100%;
+            height: 400px;
+            margin-bottom: 50px;
+        }
+
+        .swiper-slide {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .swiper-slide img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        footer {
+            background-color:#0f3b6a;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        .social {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .social a {
+            margin: 0 10px;
+            color: black;
+            text-decoration: none;
+            font-size: 2rem;
+            transition: color 0.3s;
+        }
+
+        .social a:hover {
+            color: aqua;
+        }
+
+        /* Responsividad */
+        @media (max-width: 768px) {
+            nav a {
+                padding: 10px 15px;
+            }
+
+            .galeria-horizontal {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .portada h1 {
+                font-size: 2.5rem;
+            }
+
+            .portada p {
+                font-size: 1.2rem;
+            }
+        }
+
+        p {
+            text-align: justify;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Encabezado -->
+    <header>
+        <h1>¡Química divertida! Explora y experimenta</h1>
+    </header>
+
+    <!-- Menú de navegación -->
+    <nav>
+        <a href="#inicio">Inicio</a>
+        <a href="#introduccion">Introducción</a>
+        <a href="#la-materia">La Materia</a>
+        <a href="#teoria-cinetica">Teoría Cinética</a>
+        <a href="#solido">Sólido</a>
+        <a href="#liquido">Líquido</a>
+        <a href="#gas">Gas</a>
+        <a href="#Plasmas">Plasma</a>
+        <a href="#Leyes-de-los-gases">Leyes de los gases</a>
+        <a href="#sobre-nosotros">Sobre Nosotros</a>
+        
+    </nav>
+
+    <!-- Portada -->
+    <section id="inicio" class="portada">
+        <h1>Bienvenidos a nuestra página educativa de Química</h1>
+        <p>Explora el mundo de la química con Elmer Casallas y Nasly Guzmán</p>
+        <a href="#introduccion">Más Información</a>
+    </section>
+
+    <!-- Introducción -->
+    <section id="introduccion" class="seccion container">
+        <h2>Introducción</h2>
+        <p>Bienvenidos a ¡Química Divertida! Un espacio interactivo donde explorarás el fascinante mundo de la química a través de proyectos, experimentos y recursos educativos. Descubre cómo la química está presente en tu día a día y atrévete a experimentar de manera creativa y segura. ¡Aprende, explora y diviértete con nosotros!</p>
+    </section>
+
+    <!-- Secciones sobre la materia -->
+    <section id="la-materia" class="seccion container">
+        <h2>La Materia</h2>
+        <p>La materia es todo aquello que ocupa un lugar en el espacio y tiene masa. Puede presentarse en diferentes estados como sólido, líquido, gas y plasma, y está compuesta por partículas fundamentales como átomos y moléculas.</p>
+        <div class="galeria-horizontal">
+            <div class="galeria-item">
+                <img src="image/Masa.jpg" alt="Masa">
+                <h4>Masa</h4>
+                <p>La cantidad de materia que contiene un objeto.</p>
+            </div>
+            <div class="galeria-item">
+                <img src="image/Volumen.jpg" alt="Volumen">
+                <h4>Volumen</h4>
+                <p>El espacio que ocupa un objeto.</p>
+            </div>
+            <div class="galeria-item">
+                <img src="image/Densidad.jpg" alt="Densidad">
+                <h4>Densidad</h4>
+                <p>La relación entre masa y volumen.</p>
+            </div>
+        </div>
+        <div class="galeria-horizontal">
+            <div class="galeria-item">
+            <img src="image/pexels-juanpphotoandvideo-890669.jpg" alt="">
+            <video controls>
+                <source src="https://videos.pexels.com/video-files/10229380/10229380-sd_640_360_30fps.mp4" type="video/mp4">
+            </video>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Teoría Cinética -->
+    <section id="teoria-cinetica" class="seccion container">
+        <h2>Teoría Cinética</h2>
+        <p>La teoría cinética molecular explica el comportamiento de la materia basándose en el movimiento de las partículas que la componen. Los principales puntos son:</p>
+        <ul>
+            <li>La materia está formada por partículas muy pequeñas (átomos o moléculas).</li>
+            <li>Estas partículas están en constante movimiento.</li>
+            <li>La velocidad del movimiento depende de la temperatura.</li>
+            <li>El estado de la materia depende de la energía cinética y las fuerzas de atracción entre las partículas.</li>
+        </ul>
+        <div class="galeria-horizontal">
+            <div class="galeria-item">
+                <img src="image/inercia .jpeg" alt="">
+                <img src="image/pexels-juanpphotoandvideo-890669.jpg" alt="">
+                <img src="image/atomos (1).png" alt="">
+    
+            </div>  
+            
+        </div>
+        <section id="teoria-cinetica" class="seccion container">
+            <div class="galeria">
+                <div class="galeria-item">
+                    <video controls>
+                        <source src="https://videos.pexels.com/video-files/8011409/8011409-sd_360_640_25fps.mp4" type="video/mp4">
+                    </video>
+                </div>
+
+            </div>
+
+        </section>
+    </section>
+
+    <!-- Sección de los estados sólidos -->
+    <section id="solido" class="seccion container">
+        <h2>Sólido</h2>
+        <p>Los sólidos son un estado de la materia donde las partículas están fuertemente unidas, lo que les otorga una forma y volumen definidos. En los sólidos, las partículas solo vibran alrededor de posiciones fijas.</p>
+
+        <li>Forma fija: no se adapta al contenedor</li>
+        <li>Volumen fijo: Ocupa un espacio determinado.</li>
+        <li>Incompresibles: Difícil de reducir su volumen bajo presión.</li>
+        <li>Rigidez o elasticidad: Algunos sólidos pueden deformarse y regresar a su forma original, otros no.</li>
+        <div class="galeria">
+            <div class="galeria-item">
+                <img src="image/mapa de solidos.png" alt="Sólido">
+                <h4>Sólido</h4>
+                <p>Ejemplo: Madera, hierro, etc.</p>
+                <div class="galeria-horizontal">
+                    <div class="galeria-item">
+                        <img src="image/pexels-juanpphotoandvideo-890669.jpg" alt="">
+
+                    </div>
+                    <img src="image/pexels-juanpphotoandvideo-890669.jpg" alt="">
+
+                </div>
+                
+        </div>
+
+        <section id="solido" class="seccion container">
+            
+
+        </section>
+        
+    </section>
+
+    <!-- Sección de líquidos -->
+    <section id="liquido" class="seccion container">
+        <h2>Líquido</h2>
+        <p>Los líquidos son un estado de la materia en el que las partículas están más separadas que en los sólidos, pero aún tienen una atracción suficiente para mantener un volumen definido. Sin embargo, los líquidos no tienen una forma definida y adoptan la del recipiente que los contiene.</p>
+        
+        </div>
+        <section id="Leyes de los gases" class="seccion container"></section>
+            <div class="galeria">
+                <div class="galeria-item">
+                    <img src="image/mapa de liquidos.png" alt="">
+    
+                </div>
+    
+            </div>
+
+        </section>
+    </section>
+
+    <!-- Sección de gases -->
+    <section id="gas" class="seccion container">
+        <h2>Gas</h2>
+        <p>Los gases son un estado de la materia donde las partículas están muy separadas y se mueven libremente. No tienen forma ni volumen definidos, y se expanden para llenar completamente cualquier recipiente que los contenga.</p>
+        <div class="galeria">
+            <div class="galeria-item">
+                <img src="image/mapa de gaseoso.png" alt="Gas">
+                <h4>Gas</h4>
+                <p>Ejemplo: Oxígeno, dióxido de carbono, etc.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seccion de plasma -->
+     <section id="plasma" class="seccion container">
+        <h2>Plasma</h2>
+        <p>El plasma es un estado de la materia que se forma a muy altas temperaturas, cuando los átomos pierden sus electrones y forman un gas de partículas cargadas (iones y electrones). Es el estado más común de la materia en el universo, presente en estrellas y rayos.</p>
+        <div class="galeria">
+            <div class="galeria-item">
+                <img src="" alt="Plasma">
+                <p>Ejemplo: ...</p>
+
+            </div>
+
+        </div>
+        
+     </section>
+
+     <!-- Leyes de los gases -->
+    <section id="Leyes-de-los-gases" class="seccion container">
+        <h2>Leyes de los gases</h2>
+        <h3>Ley de Boyle</h3>
+        <p>La Ley de Boyle dice que para una cantidad fija de gas a temperatura constante, el producto de la presión (P) y el volumen (V) es constante. Esto implica que si aumentas la presión sobre el gas, su volumen disminuye, y viceversa, siempre que la temperatura no cambie.</p>
+        <h5>Formula:</h5>
+
+        <p>La Ley de Boyle establece que para una cantidad fija de gas a temperatura constante, el producto de la presión y el volumen es constante:</p>
+        <p>\[P \cdot V = k\]</p>
+        <p>O en forma de cambio entre dos estados del gas:</p>
+        <p>\[P_1 \cdot V_1 = P_2 \cdot V_2\]</p>
+
+        
+        <div class="galeria-horizontal">
+            <div class="galeria-item">
+                <img src="image/ley de boyle.jpg" alt="">
+
+            </div>
+
+        </div>
+        <h3>Ley de Charles</h3>
+        <p>La Ley de Charles establece que, a presión constante, el volumen de un gas es directamente proporcional a su temperatura absoluta (T), medida en Kelvin. A medida que aumentas la temperatura, las partículas del gas se mueven más rápido y el volumen aumenta.</p>
+        <h5>Fórmula</h5>
+        <p>La Ley de Charles establece que el volumen de un gas es directamente proporcional a su temperatura absoluta a presión constante:</p>
+        <p>\[\frac{V_1}{T_1} = \frac{V_2}{T_2}\]</p>
+
+        <div class="galeria-horizontal">
+            <div class="galeria-item">
+                <img src="image/ley de charles.png" alt="">
+
+            </div>
+
+        </div>
+
+        </div>
+    </div>
+    <h3>Ley de Gay Lussac</h3>
+    <p>La Ley de Charles establece que, a presión constante, el volumen de un gas es directamente proporcional a su temperatura absoluta (T), medida en Kelvin. A medida que aumentas la temperatura, las partículas del gas se mueven más rápido y el volumen aumenta.</p>
+    <h5>Fórmula</h5>
+    <p>La Ley de Gay-Lussac establece que la presión de un gas es directamente proporcional a su temperatura absoluta a volumen constante:</p>
+    <p>\[\frac{P_1}{T_1} = \frac{P_2}{T_2}\]</p>
+
+    <div class="galeria-horizontal">
+        <div class="galeria-item">
+            <img src="image/gay lussac.jpg" alt="">
+
+        </div>
+
+    </div>
+
+    </div>
+    <div>
+      <h3>Ley combinada de los gases</h3>
+      <p>La Ley combinada de los gases une las tres leyes anteriores (Boyle, Charles y Gay-Lussac) en una sola expresión. Relaciona la presión, el volumen y la temperatura de una cantidad fija de gas.</p>
+      <h5>Fórmula:</h5>
+      <p>La Ley combinada de los gases une las tres leyes anteriores en una sola fórmula:</p>
+      <p>\[\frac{P_1 \cdot V_1}{T_1} = \frac{P_2 \cdot V_2}{T_2}\]</p>
+      <div class="galeria-horizontal">
+        <div class="galeria-item">
+            <img src="image/combinada.jpg" alt="">
+
+        </div>
+
+      </div>
+
+      <h5>Ejemplo:</h5>
+      <p>Si un gas tiene una presión de 2 atm, un volumen de 5 litros y una temperatura de 300 K, y luego la temperatura se aumenta a 600 K y la presión a 4 atm, puedes usar esta fórmula para calcular el nuevo volumen: </p>
+      <p>\[\frac{2\cdot 5}{300}= \frac{4\cdot V_2}{600} = {2.5}\]</p>
+    </div>
+
+    <div>
+        <h3>Ecuación de estados o de los gases ideales</h3>
+        <p>La ecuación de estado de los gases ideales describe el comportamiento de un gas ideal, relacionando su presión (P), volumen (V), temperatura (T) y cantidad de sustancia (n, en moles). Esta ecuación supone que las partículas del gas no interactúan entre sí y que el volumen de las moléculas es insignificante comparado con el volumen del gas.</p>
+        <h5>Fórmula</h5>
+        <p>La ecuación de estado de los gases ideales se expresa como:</p>
+        <p>\[PV = nRT\]</p><p>Donde \(R\) es la constante de los gases ideales.</p>
+
+
+    </div>
+
+    </section>
+
+    <!-- Sobre Nosotros -->
+    <section id="sobre-nosotros" class="seccion container">
+        <h2>Sobre Nosotros</h2>
+        <div class="galeria-horizontal">
+            <div class="galeria-item">
+                <img src="image/Elmer.jpg" alt="Elmer Casallas">
+                <h3>Elmer Casallas</h3>
+            </div>
+            <div class="galeria-item">
+                <img src="image/Nasly.jpg" alt="Nasly Guzmán">
+                <h3>Nasly Guzmán</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Redes Sociales -->
+    <section class="social">
+        <h2>Síguenos en:</h2>
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+    </section>
+
+    <!-- Pie de página -->
+    <footer>
+        <p>&copy; 2024 Elmer Casallas y Nasly Guzmán - Todos los derechos reservados</p>
+    </footer>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+    <!-- Script del Swiper -->
+    <script>
+        const swiper = new Swiper('.swiper-container', {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            loop: true,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+        });
+    </script>
+</body>
+</html>
